@@ -38,10 +38,10 @@ export default function Home() {
   return (
     <div>
       <h1 className="text-3xl font-bold mb-8">Our Products</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {loading ? (
           // Loading skeletons
-          Array.from({ length: 6 }).map((_, index) => (
+          Array.from({ length: 8 }).map((_, index) => (
             <div key={index} className="border rounded-lg overflow-hidden">
               <Skeleton className="h-48 w-full" />
               <div className="p-4 space-y-2">
