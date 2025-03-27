@@ -25,7 +25,7 @@ export default function CartPage() {
     return (
       <div className="flex flex-col items-center justify-center min-h-[60vh] gap-4">
         <h1 className="text-2xl font-bold">Your cart is empty</h1>
-        <p className="text-gray-500">Add some products to your cart</p>
+        <p className="text-muted-foreground">Add some products to your cart</p>
         <Link href="/">
           <Button>Continue Shopping</Button>
         </Link>
@@ -38,7 +38,7 @@ export default function CartPage() {
       <h1 className="text-3xl font-bold mb-8">Shopping Cart</h1>
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <div className="lg:col-span-2">
-          <div className="bg-white rounded-lg shadow divide-y">
+          <div className="bg-card rounded-lg shadow divide-y divide-border">
             {cartItems.map((item) => (
               <div key={item.id} className="flex items-center gap-6 p-6">
                 <div className="relative h-24 w-24">
@@ -51,7 +51,7 @@ export default function CartPage() {
                 </div>
                 <div className="flex-1">
                   <h3 className="font-medium text-lg">{item.title}</h3>
-                  <p className="text-gray-600">${item.price}</p>
+                  <p className="text-muted-foreground">${item.price}</p>
                   <div className="flex items-center gap-2 mt-2">
                     <Button
                       variant="outline"
@@ -83,18 +83,18 @@ export default function CartPage() {
           </div>
         </div>
         <div className="lg:col-span-1">
-          <div className="bg-white rounded-lg shadow p-6">
+          <div className="bg-card rounded-lg shadow p-6">
             <h2 className="text-xl font-semibold mb-4">Order Summary</h2>
             <div className="space-y-4">
               <div className="flex justify-between">
-                <span>Subtotal</span>
+                <span className="text-muted-foreground">Subtotal</span>
                 <span>${totalPrice.toFixed(2)}</span>
               </div>
               <div className="flex justify-between">
-                <span>Shipping</span>
+                <span className="text-muted-foreground">Shipping</span>
                 <span>Free</span>
               </div>
-              <div className="border-t pt-4">
+              <div className="border-t border-border pt-4">
                 <div className="flex justify-between font-semibold">
                   <span>Total</span>
                   <span>${totalPrice.toFixed(2)}</span>

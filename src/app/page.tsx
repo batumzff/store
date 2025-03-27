@@ -2,29 +2,47 @@
 
 import { useEffect, useState } from 'react'
 import ProductCard from '@/components/products/ProductCard'
-import { Product, fetchProducts } from '@/lib/services/api'
+import { Product, fetchProducts, fetchCategories } from '@/lib/services/api'
 import { Skeleton } from '@/components/ui/skeleton'
+import { Button } from '@/components/ui/button'
 
 export default function Home() {
   const [products, setProducts] = useState<Product[]>([])
+  const [filteredProducts, setFilteredProducts] = useState<Product[]>([])
+  const [categories, setCategories] = useState<string[]>([])
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
-    const loadProducts = async () => {
+    const loadData = async () => {
       try {
-        const data = await fetchProducts()
-        setProducts(data)
+        const [productsData, categoriesData] = await Promise.all([
+          fetchProducts(),
+          fetchCategories()
+        ])
+        setProducts(productsData)
+        setFilteredProducts(productsData)
+        setCategories(categoriesData)
       } catch (err) {
-        setError('Failed to load products')
+        setError('Failed to load data')
         console.error(err)
       } finally {
         setLoading(false)
       }
     }
 
-    loadProducts()
+    loadData()
   }, [])
+
+  const handleCategorySelect = (category: string | null) => {
+    setSelectedCategory(category)
+    if (category === null) {
+      setFilteredProducts(products)
+    } else {
+      setFilteredProducts(products.filter(product => product.category === category))
+    }
+  }
 
   if (error) {
     return (
@@ -37,7 +55,26 @@ export default function Home() {
 
   return (
     <div>
-      <h1 className="text-3xl font-bold mb-8">Our Products</h1>
+      <div className="mb-8">
+        <h1 className="text-3xl font-bold mb-4">Our Products</h1>
+        <div className="flex flex-wrap gap-2">
+          <Button
+            variant={selectedCategory === null ? "default" : "outline"}
+            onClick={() => handleCategorySelect(null)}
+          >
+            All Products
+          </Button>
+          {categories.map((category) => (
+            <Button
+              key={category}
+              variant={selectedCategory === category ? "default" : "outline"}
+              onClick={() => handleCategorySelect(category)}
+            >
+              {category.charAt(0).toUpperCase() + category.slice(1)}
+            </Button>
+          ))}
+        </div>
+      </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {loading ? (
           // Loading skeletons
@@ -52,7 +89,7 @@ export default function Home() {
             </div>
           ))
         ) : (
-          products.map((product) => (
+          filteredProducts.map((product) => (
             <ProductCard
               key={product.id}
               id={product.id.toString()}

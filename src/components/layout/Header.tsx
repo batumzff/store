@@ -3,19 +3,20 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
-import { ShoppingCart, Trash2 } from 'lucide-react'
+import { ShoppingCart, Trash2, Moon, Sun } from 'lucide-react'
 import { useSelector, useDispatch } from 'react-redux'
 import { RootState } from '@/lib/store'
 import { removeFromCart, updateQuantity } from '@/lib/features/cartSlice'
+import { useTheme } from 'next-themes'
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 
 export default function Header() {
   const dispatch = useDispatch()
+  const { theme, setTheme } = useTheme()
   const cartItems = useSelector((state: RootState) => state.cart.items)
   const totalItems = cartItems.reduce((total, item) => total + item.quantity, 0)
   const totalPrice = cartItems.reduce((total, item) => total + (item.price * item.quantity), 0)
@@ -35,6 +36,17 @@ export default function Header() {
           Store
         </Link>
         <nav className="flex items-center gap-4">
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+          >
+            {theme === 'dark' ? (
+              <Sun className="h-5 w-5" />
+            ) : (
+              <Moon className="h-5 w-5" />
+            )}
+          </Button>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" size="icon" className="relative">

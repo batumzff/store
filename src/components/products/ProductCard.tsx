@@ -25,8 +25,8 @@ export default function ProductCard({ id, name, price, image, description }: Pro
       price,
       description,
       image,
-      category: '', // API'den gelen kategori bilgisini kullanmıyoruz
-      rating: { rate: 0, count: 0 }, // API'den gelen rating bilgisini kullanmıyoruz
+      category: '',
+      rating: { rate: 0, count: 0 }, 
     }
     dispatch(addToCart(product))
   }
