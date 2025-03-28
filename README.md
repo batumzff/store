@@ -1,8 +1,44 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Next.js E-commerce Store
+
+A modern e-commerce store built with Next.js, Tailwind CSS, and Redux. This project demonstrates a fully functional online shopping experience with product browsing, cart management, and checkout features.
+
+## Features
+
+- **Product Catalog**: Browse products with filtering by categories
+- **Shopping Cart**: Add/remove products and manage quantities
+- **Responsive Design**: Optimized for all device sizes
+- **Theme Support**: Light/dark mode using next-themes
+- **Modern UI**: Built with Tailwind CSS and shadcn/ui components
+
+## Tech Stack
+
+- **Framework**: Next.js 15
+- **State Management**: Redux Toolkit
+- **Styling**: Tailwind CSS
+- **UI Components**: shadcn/ui (built on Radix UI primitives)
+- **API**: FakeStore API for product data
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js 18 or newer
+- npm, yarn, or pnpm
+
+### Installation
+
+1. Clone the repository
+2. Install dependencies:
+
+```bash
+npm install
+# or
+yarn install
+# or
+pnpm install
+```
+
+3. Start the development server:
 
 ```bash
 npm run dev
@@ -10,27 +46,23 @@ npm run dev
 yarn dev
 # or
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4. Open [http://localhost:3000](http://localhost:3000) in your browser to see the application.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `/src/app`: Application pages and routes
+- `/src/components`: Reusable UI components
+- `/src/lib`: Utilities, services, and API functions
+- `/public`: Static assets
 
 ## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+- [Next.js Documentation](https://nextjs.org/docs)
+- [Redux Toolkit Documentation](https://redux-toolkit.js.org/)
+- [Tailwind CSS Documentation](https://tailwindcss.com/docs)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Deployment
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The app can be easily deployed on [Vercel](https://vercel.com/new) or any other Next.js-compatible hosting platform.
